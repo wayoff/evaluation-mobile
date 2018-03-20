@@ -1,0 +1,69 @@
+<ion-header>
+  <ion-navbar color="primary">
+    <ion-buttons end>
+      <button ion-button icon-only navPop>
+        <ion-icon name="close"></ion-icon>
+      </button>
+    </ion-buttons>
+    <ion-title>
+      {{ form.title }}
+    </ion-title>
+  </ion-navbar>
+  <ion-toolbar>
+    <ion-segment [(ngModel)]="segment">
+      <ion-segment-button value="overall">
+        Overall
+      </ion-segment-button>
+      <ion-segment-button value="questions">
+        Questions
+      </ion-segment-button>
+      <ion-segment-button value="list">
+        Items
+      </ion-segment-button>
+    </ion-segment>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content padding>
+  <div *ngIf="segment == 'overall'">
+    <ion-card>
+      <ion-card-header>
+        Over All
+      </ion-card-header>
+      <ion-card-content>
+        <ion-list>
+          <ion-item> Always <button ion-button outline item-end> {{overAllCountByAnswer('Always')}} </button> </ion-item>
+          <ion-item> Often <button ion-button outline item-end> {{overAllCountByAnswer('Often')}} </button> </ion-item>
+          <ion-item> Sometimes <button ion-button outline item-end> {{overAllCountByAnswer('Sometimes')}} </button>  </ion-item>
+          <ion-item> Seldom <button ion-button outline item-end> {{overAllCountByAnswer('Seldom')}} </button>  </ion-item>
+          <ion-item> Never <button ion-button outline item-end> {{overAllCountByAnswer('Never')}} </button>  </ion-item>
+        </ion-list>
+      </ion-card-content>
+    </ion-card>
+  </div>
+  <div *ngIf="segment == 'questions'">
+    <ion-card *ngFor="let question of form.questions">
+      <ion-card-header>
+        {{ question.title }}
+      </ion-card-header>
+      <ion-card-content>
+        <ion-list>
+          <ion-item> Always <button ion-button outline item-end> {{overAllCountByQuestionAnswer(question.id, 'Always')}} </button> </ion-item>
+          <ion-item> Often <button ion-button outline item-end> {{overAllCountByQuestionAnswer(question.id, 'Often')}} </button> </ion-item>
+          <ion-item> Sometimes <button ion-button outline item-end> {{overAllCountByQuestionAnswer(question.id, 'Sometimes')}} </button>  </ion-item>
+          <ion-item> Seldom <button ion-button outline item-end> {{overAllCountByQuestionAnswer(question.id, 'Seldom')}} </button>  </ion-item>
+          <ion-item> Never <button ion-button outline item-end> {{overAllCountByQuestionAnswer(question.id, 'Never')}} </button>  </ion-item>
+        </ion-list>
+      </ion-card-content>
+    </ion-card>
+  </div>
+  <div *ngIf="segment == 'list'">
+    <ion-list>
+      <ion-item *ngFor="let ans of answers.answers">
+        {{ ans.created_at }}
+
+        <button ion-button outline item-end (click)="onClickListItem(ans)"> View </button> 
+      </ion-item>
+    </ion-list>
+  </div>
+</ion-content>

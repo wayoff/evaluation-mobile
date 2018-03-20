@@ -1,5 +1,5 @@
 <ion-header>
-  <ion-navbar>
+  <ion-navbar color="primary">
     <ion-title>
       About
     </ion-title>
@@ -7,5 +7,36 @@
 </ion-header>
 
 <ion-content padding>
+  <ion-list *ngIf="user != null">
 
+    <ion-item>
+      <ion-icon name="contact" item-start></ion-icon>
+      <h2>{{ user.name }}</h2>
+      <h3>Name</h3>
+    </ion-item>
+
+    <ion-item>
+      <ion-icon name="people" item-start></ion-icon>
+      <h2>{{ user.department }}</h2>
+      <h3>Department</h3>
+    </ion-item>
+
+    <ion-item>
+      <ion-icon name="alert" item-start></ion-icon>
+      <h2 text-capitalize>{{ user.user_type }}</h2>
+      <h3>Type</h3>
+    </ion-item>
+
+    <ion-item>
+      <ion-icon name="clock" item-start></ion-icon>
+      <h2 text-capitalize>{{ user.created_at }}</h2>
+      <h3>Created at</h3>
+    </ion-item>
+
+    <ion-item (click)="logout()">
+      <ion-icon name="exit" item-start></ion-icon>
+      <h2 text-capitalize ion-text color="danger"> Logout </h2>
+    </ion-item>
+
+  </ion-list>
 </ion-content>

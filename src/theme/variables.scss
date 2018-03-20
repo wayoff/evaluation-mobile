@@ -34,7 +34,8 @@ $app-direction: ltr;
 // The "primary" color is the only required color in the map.
 
 $colors: (
-  primary:    #488aff,
+  // primary:    #488aff,
+  primary:    #870000,
   secondary:  #32db64,
   danger:     #f53d3d,
   light:      #f4f4f4,
@@ -52,8 +53,6 @@ $colors: (
 // App Material Design Variables
 // --------------------------------------------------
 // Material Design only Sass variables can go here
-
-
 
 
 // App Windows Variables
@@ -86,3 +85,11 @@ $colors: (
 
 @import "roboto";
 @import "noto-sans";
+
+ion-card-header {
+  // background-color: #870000 !important;
+  color: #870000 !important;
+  margin-bottom: 5px;
+  text-overflow: clip !important;
+  white-space: normal !important;
+}
